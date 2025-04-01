@@ -1,15 +1,15 @@
 # Informe de Auditoría: Evaluación de Procesos Operativos
 
 ## Metadatos del Informe
-- **Número de Auditoría**: 2025-001  
-- **Versión**: 1.0  
-- **Estado**: Revisado  
-- **Fecha de Auditoría**: 01 de abril de 2025  
+- **Número de Auditoría**: [Ejemplo: 2025-001]  
+- **Versión**: [1.0 | 1.1 | 2.0]  
+- **Estado**: [Borrador | Revisado | Aprobado]  
+- **Fecha de Auditoría**: [DD/MM/AAAA]  
 
 ---
 
 ## I. Resumen Ejecutivo
-Descripción general de los hallazgos, impacto y recomendaciones estratégicas.
+Breve descripción general de los hallazgos, impacto y recomendaciones estratégicas.  
 
 ---
 
@@ -49,9 +49,9 @@ Descripción general de los hallazgos, impacto y recomendaciones estratégicas.
 ---
 
 ## V. Plan de Acción y Seguimiento
-- **Corto Plazo**: Capacitación y guía operativa (1 mes).  
-- **Mediano Plazo**: Implementación de estándares (3 meses).  
-- **Largo Plazo**: Monitoreo y evaluación constante (6 meses).  
+- **Corto Plazo** (1 mes): [Acción específica aquí].  
+- **Mediano Plazo** (3 meses): [Acción específica aquí].  
+- **Largo Plazo** (6 meses): [Acción específica aquí].  
 
 ---
 
@@ -63,4 +63,3 @@ Resumen de los beneficios esperados tras implementar las recomendaciones.
 ## VII. Referencias
 1. Documento normativo.  
 2. Anexo de métricas.  
-
