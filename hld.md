@@ -1,34 +1,25 @@
 # Documento de Arquitectura High-Level Design (HLD)
 
-## 1. Introducción
-Este documento describe la arquitectura de TI de alto nivel para sistemas empresariales, alineada con estándares internacionales como **ISO/IEC 27001**, **TOGAF**, **COBIT 2019** y **ITIL v4**. Está diseñado para servir como base para el diseño de bajo nivel (Low-Level Design, LLD) y ser comprensible para todos los stakeholders, técnicos y no técnicos.
+## 1. Introducción y Objetivos
+Este documento describe la arquitectura de TI de alto nivel para sistemas empresariales, alineada con estándares internacionales como **ISO/IEC 27001**, **TOGAF**, **COBIT 2019** y **ITIL v4**. Está diseñado para servir como base para el desarrollo del diseño técnico detallado (Low-Level Design, LLD) y para ser comprendido tanto por stakeholders técnicos como no técnicos.
+
+### Objetivos
+- Proveer una visión clara de la arquitectura para guiar decisiones técnicas.
+- Asegurar el cumplimiento de estándares internacionales y mejores prácticas.
+- Facilitar la comunicación y comprensión entre equipos técnicos y no técnicos.
+- Servir como referencia para desarrollar arquitecturas complejas con múltiples interdependencias.
 
 ---
 
-## 2. Alcance
-El diseño abarca:
-- Infraestructura física y virtual.
-- Integración de sistemas y servicios.
-- Seguridad y cumplimiento regulatorio.
-- Escalabilidad y rendimiento.
-
----
-
-## 3. Historias de Usuario y Casos de Uso
+## 2. Requisitos Funcionales
 ### Historias de Usuario
-Estas historias de usuario representan los requisitos funcionales que la arquitectura debe cumplir:
-
-| ID Historia | Descripción                                                                                        | Objetivo                                                  | Norma Cumplida         |
-|-------------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------|
-| HU-001      | Como usuario, quiero crear una cuenta en el sistema para gestionar mis datos personales.           | Gestión de usuarios y sus datos.                        | **ISO/IEC 27001**     |
-| HU-002      | Como administrador, deseo gestionar roles y permisos para asignar niveles de acceso al sistema.    | Control de accesos y roles.                              | **GDPR**              |
-| HU-003      | Como usuario, quiero recuperar mi contraseña en caso de pérdida mediante un sistema seguro.        | Recuperación y seguridad en autenticación.              | **ISO/IEC 27001**     |
-
----
+| ID Historia | Descripción                                                                                        | Norma Cumplida         |
+|-------------|----------------------------------------------------------------------------------------------------|------------------------|
+| HU-001      | Como usuario, quiero crear una cuenta para gestionar mis datos personales.                         | **ISO/IEC 27001**     |
+| HU-002      | Como administrador, deseo gestionar roles y permisos para asignar niveles de acceso.               | **GDPR**              |
+| HU-003      | Como usuario, quiero recuperar mi contraseña de manera segura en caso de pérdida.                  | **ISO/IEC 27001**     |
 
 ### Casos de Uso
-Los casos de uso describen las interacciones específicas derivadas de las historias de usuario:
-
 | ID Caso de Uso | Relación con Historias de Usuario | Descripción de Interacción                      | Norma Cumplida         |
 |----------------|-----------------------------------|------------------------------------------------|------------------------|
 | CU-001         | HU-001                            | Creación de cuentas de usuario nuevas.         | **ISO/IEC 27001**     |
@@ -37,40 +28,60 @@ Los casos de uso describen las interacciones específicas derivadas de las histo
 
 ---
 
-### Relación entre Casos de Uso y Servicios
-La arquitectura incluye servicios específicos para cumplir con los casos de uso definidos:
+## 3. Requisitos No Funcionales
+| Requisito             | Descripción                                                                 | Norma Cumplida         |
+|-----------------------|-----------------------------------------------------------------------------|------------------------|
+| Rendimiento           | Soportar hasta 10,000 TPS con latencia menor a 200ms.                      | **ITIL v4**            |
+| Seguridad             | Proteger datos y cumplir con **ISO/IEC 27001**.                            | **ISO/IEC 27001**      |
+| Disponibilidad        | Garantizar uptime del 99.99% mediante servidores redundantes y redes seguras. | **ISO/IEC 27001**   |
+| Escalabilidad         | Permitir integración de nuevos servicios de manera modular mediante APIs RESTful. | **TOGAF**        |
 
-| ID Caso de Uso | Servicio Relacionado               | Tipo       | Dependencias                  | TPS Esperado  |
-|----------------|------------------------------------|------------|-------------------------------|---------------|
-| CU-001         | API de Gestión de Usuarios         | Nuevo      | Base de datos central         | 500 TPS       |
-| CU-002         | Sistema de Roles y Permisos        | Existente  | Integración con el CRM         | 200 TPS       |
-| CU-003         | Servicio de Recuperación de Contraseñas | Nuevo | Integración con API de autenticación | 300 TPS       |
-
----
-
-## 4. Componentes de la Arquitectura
-### Infraestructura
-#### Físico y Virtual:
-- Servidores y almacenamiento basados en **ANSI/TIA-942**.
-- Redes definidas por estándares **IEEE 802**.
+### Específicos por Caso de Uso
+| ID Caso de Uso | Requisito No Funcional                          | Descripción                                                                 | Norma Cumplida         |
+|----------------|-------------------------------------------------|-----------------------------------------------------------------------------|------------------------|
+| CU-001         | Rendimiento                                     | Soportar picos de creación de cuentas con hasta 5,000 TPS simultáneos.      | **ITIL v4**            |
+| CU-002         | Seguridad                                       | Autenticación robusta para gestión de roles y permisos.                     | **ISO/IEC 27001**      |
+| CU-003         | Disponibilidad                                  | Garantizar que el sistema de recuperación de contraseñas funcione 24/7.     | **ISO/IEC 27001**      |
 
 ---
 
-## 5. Impacto en Low-Level Design (LLD)
-### Detalles Técnicos Clave
-| Métrica              | Requisito                     | Norma Cumplida            |
-|----------------------|-------------------------------|---------------------------|
-| TPS (Transacciones)  | Hasta 10,000 TPS              | N/A                       |
-| Latencia             | < 200ms                      | **ITIL v4**               |
-| Disponibilidad       | 99.99%                        | **ISO/IEC 27001**         |
+## 4. Servicios y Métodos por Caso de Uso
+Esta sección detalla los servicios, métodos y componentes clave necesarios para implementar cada caso de uso, así como las relaciones entre ellos.
+
+| Caso de Uso | Servicios Involucrados          | Métodos Clave                           | Dependencias Clave                    |
+|-------------|---------------------------------|-----------------------------------------|---------------------------------------|
+| CU-001      | Servicio de Gestión de Usuarios | `createUser(accountData)`               | Base de datos central, API de autenticación. |
+| CU-002      | Servicio de Roles y Permisos    | `assignRole(userId, role)`              | API de gestión de roles, Sistema CRM (para integración). |
+| CU-003      | Servicio de Recuperación        | `sendRecoveryEmail(email)`              | Servicio de correos, API de autenticación. |
+
+### Ejemplo de Relación
+- **CU-001:** El método `createUser()` del Servicio de Gestión de Usuarios interactúa con la API de autenticación para validar las credenciales iniciales antes de almacenar los datos en la Base de Datos Central.
+
+---
+
+## 5. Diseños Visuales y Diagramas
+Los diagramas generados en **Draw.io** son clave para ilustrar elementos de la arquitectura. Los tipos recomendados son:
+1. **Diagrama de Contexto**: Representa interacciones generales entre usuarios, sistemas y servicios.
+2. **Modelo C4**: Define contenedores, componentes y relaciones.
+3. **Diagrama UML**: Muestra casos de uso y flujos de trabajo específicos, como la recuperación de contraseñas.
+
+---
+
+## 6. Impacto en el Low-Level Design (LLD)
+### Principales Influencias
+- **Modularidad**: Implementación de microservicios desacoplados para garantizar flexibilidad y escalabilidad.
+- **Estándares de Interfaces**: Definición de APIs RESTful que se ajusten a los requisitos funcionales y no funcionales.
+- **Requisitos Técnicos**: Implementación guiada por métricas de rendimiento (TPS, latencia) y disponibilidad.
 
 ### Riesgos Potenciales y Mitigación
-1. **Sobrecarga de TPS**: Riesgo de superar el límite en horas pico.
-   - **Mitigación**: Escalabilidad horizontal con microservicios.
-2. **Fallas de Seguridad**: Brechas de autenticación.
-   - **Mitigación**: Autenticación y encriptación robusta con OAuth 2.0.
+| Riesgo                  | Mitigación                                                                 |
+|-------------------------|---------------------------------------------------------------------------|
+| Sobrecarga de TPS       | Escalabilidad horizontal mediante microservicios.                        |
+| Brechas de Seguridad    | Implementación de autenticación robusta con OAuth 2.0.                  |
+| Dependencias No Resueltas | Coordinación temprana entre equipos y pruebas de integración.           |
 
 ---
 
-## 6. Conclusión
-La arquitectura descrita está diseñada para cumplir con las historias de usuario y casos de uso, asegurando una solución escalable, segura y alineada con estándares internacionales. Su estructura modular y detallada facilita el desarrollo técnico de bajo nivel y asegura que sea accesible para todos los stakeholders.
+## 7. Conclusión
+La arquitectura propuesta es modular, segura y escalable. Está diseñada para cumplir con los casos de uso y alinearse con estándares internacionales, sirviendo como base sólida para el diseño técnico detallado (LLD). Este enfoque asegura un desarrollo eficiente y una operación confiable de los sistemas.
+
