@@ -95,10 +95,17 @@ Los casos de uso detallados se desarrollan en función de estas historias de usu
 
 ## 7. Impacto en Low-Level Design (LLD)
 ### Información Clave
-- **Requisitos de Rendimiento**: La arquitectura debe soportar hasta 10,000 TPS con latencia inferior a 200ms.
-- **Escalabilidad**: Implementación modular para facilitar la integración de nuevos servicios.
-- **Seguridad**: Autenticación y encriptación alineadas con **ISO/IEC 27001**.
-- **Disponibilidad**: Garantizar un uptime del 99.99% mediante redundancia en infraestructura.
+| Métrica              | Requisito                     | Norma o Estándar Cumplido |
+|----------------------|-------------------------------|--------------------------|
+| TPS (Transacciones)  | Hasta 10,000 TPS              | N/A                      |
+| Latencia             | < 200ms                      | ITIL v4                  |
+| Disponibilidad       | 99.99%                        | ISO/IEC 27001            |
+
+### Riesgos Potenciales y Mitigación
+1. **Sobrecarga de TPS**: Riesgo de superar el límite en horas pico.
+   - **Mitigación**: Escalabilidad horizontal con microservicios.
+2. **Fallas de Seguridad**: Brechas de autenticación.
+   - **Mitigación**: Autenticación y encriptación robusta con OAuth 2.0.
 
 ---
 
@@ -122,7 +129,14 @@ El modelo C4 se empleará para proporcionar diagramas visuales que describen la 
 
 ---
 
-## 9. Exposición y Formato
+## 9. Glosario de Términos
+- **TPS**: Transacciones por Segundo.
+- **LLD**: Low-Level Design, diseño técnico detallado.
+- **OAuth 2.0**: Protocolo abierto para autorización.
+
+---
+
+## 10. Exposición y Formato
 ### Estrategias:
 1. Utilizar encabezados claros para cada sección.
 2. Incorporar diagramas visuales como UML y C4.
@@ -131,10 +145,16 @@ El modelo C4 se empleará para proporcionar diagramas visuales que describen la 
 
 ---
 
-## 10. Conclusión
+## 11. Conclusión
 La arquitectura descrita proporciona una solución escalable, segura y alineada con estándares internacionales. Su diseño modular facilita el desarrollo técnico de bajo nivel y asegura que sea accesible para stakeholders no técnicos.
 
 ---
 
-**Nota:** Este documento está estructurado para servir como base para el Low-Level Design (LLD) y como referencia clara para comprender arquitecturas completas o de servicios.
+## Apéndice
+- **Enlace a Estándares**: [ISO/IEC 27001](https://www.iso.org/isoiec-27001-information-security.html)
+- **Referencia Técnica**: Guía de implementación OAuth 2.0.
+
+---
+
+Este documento ahora incluye todos los detalles mejorados que lo hacen más completo y accesible. Si deseas añadir algo más o ajustar algún detalle, ¡podemos seguir trabajando juntos! 🚀📖
 
