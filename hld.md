@@ -72,8 +72,38 @@ Servicios como CRM y ERP estarán interconectados mediante APIs REST, cumpliendo
 
 ---
 
-## 5. Metodología de Desarrollo
-### 5.1. Gestión de Proyectos
+## 5. Requisitos Funcionales: Historias de Usuario y Casos de Uso
+### Historias de Usuario
+| ID Historia | Descripción               | Caso de Uso Relacionado         | Norma Cumplida         |
+|-------------|---------------------------|---------------------------------|------------------------|
+| HU-001      | Como usuario, quiero...   | Crear una cuenta de usuario     | ISO/IEC 27001         |
+| HU-002      | Como administrador, deseo| Gestionar roles y permisos     | GDPR                  |
+
+### Casos de Uso
+Los casos de uso detallados se desarrollan en función de estas historias de usuario, asegurando que las normas y estándares aplicables sean cumplidos.
+
+---
+
+## 6. Servicios Necesarios y Detalles Técnicos
+### Listado de Servicios
+| Servicio          | Tipo       | TPS Esperado | Dependencias         | Impacto en LLD         |
+|-------------------|------------|--------------|----------------------|------------------------|
+| API de Autenticación | Nuevo      | 500 TPS      | Base de datos central| Diseño de endpoints    |
+| Sistema CRM       | Existente  | 100 TPS      | API de Integración   | Optimización de queries|
+
+---
+
+## 7. Impacto en Low-Level Design (LLD)
+### Información Clave
+- **Requisitos de Rendimiento**: La arquitectura debe soportar hasta 10,000 TPS con latencia inferior a 200ms.
+- **Escalabilidad**: Implementación modular para facilitar la integración de nuevos servicios.
+- **Seguridad**: Autenticación y encriptación alineadas con **ISO/IEC 27001**.
+- **Disponibilidad**: Garantizar un uptime del 99.99% mediante redundancia en infraestructura.
+
+---
+
+## 8. Metodología de Desarrollo
+### 8.1. Gestión de Proyectos
 #### Ciclo de Vida:
 Se aplicará **Scrum** para metodologías ágiles o **PMI** para proyectos tradicionales.
 
@@ -82,31 +112,29 @@ En proyectos ágiles, los entregables serán distribuidos en "sprints" de dos se
 
 ---
 
-### 5.2. Documentación
+### 8.2. Documentación
 #### Estructura:
 - Diagramas conforme al modelo **C4** (Contexto, Contenedores, Componentes, Código).
 - Reportes técnicos según **IEEE 829**.
 
 #### Ejemplo:
-El diagrama C4 será utilizado para describir visualmente la interacción entre módulos principales, facilitando la comprensión tanto técnica como no técnica.
+El modelo C4 se empleará para proporcionar diagramas visuales que describen la interacción entre los módulos principales.
 
 ---
 
-## 6. Exposición y Formato
+## 9. Exposición y Formato
 ### Estrategias:
 1. Utilizar encabezados claros para cada sección.
 2. Incorporar diagramas visuales como UML y C4.
 3. Proveer ejemplos prácticos en cada segmento.
 4. Redactar contenido en lenguaje claro y sencillo.
 
-#### Ejemplo:
-Un gráfico UML acompañará la descripción de la arquitectura para visualizar la interacción entre componentes.
-
 ---
 
-## 7. Conclusión
+## 10. Conclusión
 La arquitectura descrita proporciona una solución escalable, segura y alineada con estándares internacionales. Su diseño modular facilita el desarrollo técnico de bajo nivel y asegura que sea accesible para stakeholders no técnicos.
 
 ---
 
 **Nota:** Este documento está estructurado para servir como base para el Low-Level Design (LLD) y como referencia clara para comprender arquitecturas completas o de servicios.
+
